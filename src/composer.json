@@ -1,0 +1,25 @@
+{
+    "name": "andsu/easyentity",
+    "description": "My personal package for create entities",
+    "type": "library",
+    "require": {
+        "pestphp/pest": "^2.13"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Andsu\\Easyentity\\": "app/",
+            "Andsu\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Anderson Lucas Silva de Oliveira"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

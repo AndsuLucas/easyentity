@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  easyentity_php:
+
+services: 
+  php:
+    container_name: easyentity_php
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    volumes:
+      - './src:/var/www/html'
+    networks:
+      - easyentity_php
+
+  composer:
+    container_name: easyentity_composer
+    build:
+      context: ./dockerfiles
+      dockerfile: php.dockerfile
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    volumes:
+      - './src:/var/www/html'
+    networks:
+      - easyentity_php
