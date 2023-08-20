@@ -1,9 +1,9 @@
 <?php
 
-use Andsu\Tests\Unit\Entities\BasicOperationEntity;
+use Andsu\Tests\Unit\EntitiesMock\BasicOperationEntity;
 
 describe('Basic operations of entity', function() {
-    it('should fill the entity with corresponding data when not have case sensitive constraint', function ($data, $expectedId, $expectedName, $expectedAge) {
+    it('should fill the entity with corresponding data', function ($data, $expectedId, $expectedName, $expectedAge) {
         $userEntity = new BasicOperationEntity($data);
 
         expect($userEntity->id)->toBe($expectedId);
@@ -11,17 +11,15 @@ describe('Basic operations of entity', function() {
         expect($userEntity->age)->toBe($expectedAge);
     })->with('user_fake_entity_data_set');
 
-    it('should return null when entity property was not initialized and has not initialized constraint', function() {
+    it('should return Error when entity property was not initialized and has not prevent initialized behavior', function() {
         $userEntity = new BasicOperationEntity();
 
-        expect($userEntity->id)->toBeNull();
-        expect($userEntity->name)->toBeNull();
-        expect($userEntity->age)->toBeNull();
-    });
-
-    it('should return null when entity has not the requested property and has not exists constraint', function () {
-        $userEntity = new BasicOperationEntity();
-        expect($userEntity->Name)->toBeNull();
+        try {
+            $userEntity->id;
+            throw new Exception('Fail to return error');
+        } catch (\Throwable $th) {
+            expect($th->getMessage())->toMatch('/Typed property .*::\$id must not be accessed before initialization/');
+        }
     });
     
     it('should set correctly', function () {
@@ -39,6 +37,7 @@ describe('Basic operations of entity', function() {
         $userEntity = new BasicOperationEntity();
         try {
             $userEntity->name = 12;
+            throw new Exception('Fail to return error');
         } catch (\Throwable $th) {
             expect($th->getMessage())->toMatch('/Cannot assign int to property/');
         }
