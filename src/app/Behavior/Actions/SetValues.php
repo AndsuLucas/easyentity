@@ -9,7 +9,7 @@ trait SetValues
     public function __set(mixed $propName, mixed $propValue): void
     {
         if (property_exists($this, $propName)) {
-            $this->$propName = $propValue;
+            $this->$propName = $this->castValue($propName, $propValue);
             return;
         }
 
@@ -19,7 +19,7 @@ trait SetValues
             return;
         }
 
-        $this->$prop = $propValue;
+        $this->$prop = $this->castValue($prop, $propValue);
 
     }
 
