@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Andsu\Easyentity\Base;
 
 use Andsu\Easyentity\Behavior\Actions\AvoidPropertyInitialization;
+use Andsu\Easyentity\Behavior\Actions\CastValues;
+use Andsu\Easyentity\Behavior\Actions\GetValues;
 use Andsu\Easyentity\Behavior\Actions\IndexAddapters;
 use Andsu\Easyentity\Behavior\Actions\SetValues;
 
@@ -14,7 +16,9 @@ abstract class EasyEntity implements IEasyEntity
 
     use AvoidPropertyInitialization,
         IndexAddapters,
-        SetValues;
+        SetValues,
+        GetValues,
+        CastValues;
 
     public function __construct(array $data = [])
     {
@@ -29,16 +33,7 @@ abstract class EasyEntity implements IEasyEntity
     {
         foreach ($data as $propName => $propValue) {
             $propName = strtolower($propName);
-            $this->$propName = $propValue;
+            $this->__set($propName, $propValue);
         }
-    }
-
-    public function __get(string $propName): mixed
-    {
-        if (!property_exists($this, $propName)) {
-            return null;
-        }
-
-        return $this->get($propName);
     }
 }

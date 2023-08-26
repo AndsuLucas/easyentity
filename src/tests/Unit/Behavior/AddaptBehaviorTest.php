@@ -35,7 +35,8 @@ describe('Addapt entity behaviors', function() {
             'age_val' => 'age',
             'idade' => 'age',
             'nome' => 'name',
-            'address_id' => 'addressId'
+            'address_id' => 'addressId',
+            'some_value_object' => 'someValueObject'
         ]);
 
     });

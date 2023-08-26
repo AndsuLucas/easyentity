@@ -7,9 +7,10 @@ namespace Andsu\Easyentity\Behavior\Attributes;
 use Attribute;
 
 #[Attribute]
-class Addapt {
+class Addapt
+{
     
-    public function __construct(private array $fieldsToAddapt){}
+    public function __construct(private readonly array $fieldsToAddapt){}
 
     public function getTargetPropNameByFieldToAddapt(string $propName): array
     {
