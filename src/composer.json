@@ -2,7 +2,7 @@
     "name": "andsu/easyentity",
     "description": "My personal package for create entities",
     "type": "library",
-    "require": {
+    "require-dev": {
         "pestphp/pest": "^2.13"
     },
     "license": "MIT",
