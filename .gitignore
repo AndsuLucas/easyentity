@@ -1,2 +1,3 @@
-src/vendor
-src/phpunit.xml.bak
+vendor
+phpunit.xml.bak
+.idea
