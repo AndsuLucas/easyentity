@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Andsu\Tests\Unit\EntitiesMock;
+namespace Andsu\Tests\EntitiesMock;
 
 use Andsu\Easyentity\Base\EasyEntity;
 use Andsu\Easyentity\Behavior\Attributes\Addapt;
@@ -11,9 +11,9 @@ use Andsu\Easyentity\Behavior\Attributes\CastWithMethod;
 
 class BasicOperationEntity extends EasyEntity
 {
-    /** 
+    /**
      * doc block
-     * @ignoreBehavior AvoidPropertyInitialization 
+     * @ignoreBehavior AvoidPropertyInitialization
      */
     #[Cast('intval')]
     protected int $id;
@@ -33,9 +33,12 @@ class BasicOperationEntity extends EasyEntity
     protected int $addressId;
 
     #[Addapt(['some_value_object'])]
-    #[CastWithMethod('castSomeValueObject', __CLASS__)]
+    #[CastWithMethod('castSomeValueObject')]
     protected object $someValueObject;
 
+    /**
+     * @param array<mixed, mixed> $value
+     */
     protected function castSomeValueObject(array $value): object
     {
         return (object) $value;

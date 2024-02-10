@@ -15,17 +15,17 @@ trait AvoidPropertyInitialization
         $prop = new ReflectionProperty($this, $propertyName);
         $docComment = $prop->getDocComment();
 
-        $mustBehaveLikeThis = !is_string($docComment) 
+        $mustBehaveLikeThis = !is_string($docComment)
             || strpos($docComment, self::IGNORE_THIS_BEHAVIOR) === false;
-        
+
         if (! $mustBehaveLikeThis) {
             return $this->$propertyName;
         }
 
-        try {
-            return $this->$propertyName;
-        } catch (\Throwable $th) {
+        if (! isset($this->$propertyName)) {
             return null;
         }
+
+        return $this->$propertyName;
     }
 }
