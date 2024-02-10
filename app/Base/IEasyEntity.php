@@ -8,5 +8,5 @@ interface IEasyEntity
 {
     public function __get(string $propertyName): mixed;
 
-    public function __set(mixed $name, mixed $value): void;
+    public function __set(string $name, mixed $value): void;
 }

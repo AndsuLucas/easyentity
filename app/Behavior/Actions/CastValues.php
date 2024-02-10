@@ -15,7 +15,7 @@ trait CastValues
         if (!property_exists($this, $propName)) {
             return $valueToCast;
         }
-        
+
         $prop = new ReflectionProperty($this, $propName);
 
         $attributes = $prop->getAttributes(Cast::class);

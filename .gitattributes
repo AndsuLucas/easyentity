@@ -1,2 +1,7 @@
 /tests export-ignore
 /dockerfiles export-ignore
+composer.lock export-ignore
+grumphp.yml export-ignore
+phpunit.xml export-ignore
+ruleset.xml export-ignore
+docker-compose.yml export-ignore

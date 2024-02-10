@@ -9,9 +9,16 @@ use Attribute;
 #[Attribute]
 class Addapt
 {
-    
-    public function __construct(private readonly array $fieldsToAddapt){}
+    /**
+     * @param array<string, string> $fieldsToAddapt
+     */
+    public function __construct(private readonly array $fieldsToAddapt)
+    {
+    }
 
+    /**
+     * @return array<string, string>
+     */
     public function getTargetPropNameByFieldToAddapt(string $propName): array
     {
         $fieldIndex = [];
