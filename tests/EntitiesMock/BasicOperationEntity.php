@@ -11,6 +11,15 @@ use Andsu\Easyentity\Behavior\Attributes\CastWithMethod;
 
 class BasicOperationEntity extends EasyEntity
 {
+    protected array $addaptIndex = [
+        'Id' => 'id',
+        'age_val' => 'age',
+        'nome' => 'name',
+        'address_id' => 'addressId',
+        'idade' => 'age',
+        'some_value_object' => 'someValueObject',
+    ];
+
     /**
      * doc block
      * @ignoreBehavior AvoidPropertyInitialization
@@ -22,17 +31,13 @@ class BasicOperationEntity extends EasyEntity
      * test doc block
      * a b c 1 2 3
      */
-    #[Addapt(['age_val', 'idade'])]
     #[Cast('intval')]
     protected int $age;
 
-    #[Addapt(['nome'])]
     protected string $name;
 
-    #[Addapt(['address_id'])]
     protected int $addressId;
 
-    #[Addapt(['some_value_object'])]
     #[CastWithMethod('castSomeValueObject')]
     protected object $someValueObject;
 

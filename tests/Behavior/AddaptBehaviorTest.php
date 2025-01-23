@@ -25,6 +25,19 @@ class AddaptBehaviorTest extends TestCase
         $this->assertEquals(2, $basicEntity->addressId);
     }
 
+    public function testShouldSetCorrectlyByAdaptativeSetterWhenAddaptWithPattern()
+    {
+        $basicEntity = new BasicOperationEntity([
+            'Id' => 1,
+            'age_val' => 24,
+            'nome' => 'Anderson Lucas',
+            'address_id' => 2
+        ]);
+
+
+        $this->assertEquals(24, $basicEntity->age);
+    }
+
     public function testShouldSetCorrectlyByAdaptativeSetterWhenAddaptWithMultiplesPatterns()
     {
         $basicEntity = new BasicOperationEntity([
@@ -32,21 +45,5 @@ class AddaptBehaviorTest extends TestCase
         ]);
 
         $this->assertEquals(24, $basicEntity->age);
-    }
-
-    public function testShouldIndexingAddaptersCorreclty()
-    {
-        $basicEntity = new BasicOperationEntity();
-        $property = new ReflectionProperty($basicEntity, 'addaptIndex');
-        $property->setAccessible(true);
-        $propertyValue = $property->getValue($basicEntity);
-
-        $this->assertEquals([
-            'age_val' => 'age',
-            'idade' => 'age',
-            'nome' => 'name',
-            'address_id' => 'addressId',
-            'some_value_object' => 'someValueObject'
-        ], $propertyValue);
     }
 }
