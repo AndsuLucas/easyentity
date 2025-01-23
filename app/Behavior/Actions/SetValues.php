@@ -13,17 +13,33 @@ trait SetValues
             return;
         }
 
-        $prop = $this->getProperlyPropNameByAdaptAttribute($propName);
+        $prop = $this->addapt($propName);
+        if ($prop === null) {
+            return;
+        }
 
-        if (!$prop) {
+
+        if (!method_exists($this, 'castValue')) {
+            $this->$prop = $propValue;
             return;
         }
 
         $this->$prop = $this->castValue($prop, $propValue);
     }
 
-    private function getProperlyPropNameByAdaptAttribute(string $propName): string
+    private function addapt(string $propName): ?string
     {
-        return  $this->addaptIndex[$propName] ?? '';
+        $prop = $this->addaptIndex[$propName] ?? null;
+        if (!is_string($prop)) {
+            return null;
+        }
+
+
+        if (!property_exists($this, $prop)) {
+            return null;
+        }
+
+
+        return $prop;
     }
 }

@@ -9,17 +9,17 @@ use Andsu\Easyentity\Behavior\Actions\CastValues;
 use Andsu\Easyentity\Behavior\Actions\GetValues;
 use Andsu\Easyentity\Behavior\Actions\IndexAddapters;
 use Andsu\Easyentity\Behavior\Actions\SetValues;
+use Andsu\Easyentity\Base\IEasyEntity;
 
 abstract class EasyEntity implements IEasyEntity
 {
     use AvoidPropertyInitialization;
-    use IndexAddapters;
     use SetValues;
     use GetValues;
     use CastValues;
 
     /**
-     * @var array<string, string>
+     * @var array<string, mixed>
      */
     protected array $addaptIndex = [];
 
@@ -28,7 +28,6 @@ abstract class EasyEntity implements IEasyEntity
      */
     public function __construct(array $data = [])
     {
-        $this->indexAdapters();
 
         if (!empty($data)) {
             $this->fill($data);

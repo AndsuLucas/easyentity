@@ -41,7 +41,6 @@ trait CastValues
         /** @var CastWithMethod $castAttribute */
         $castAttribute = array_pop($attributes)
                 ->newInstance();
-        echo 'oassi';
         return $castAttribute->cast($this, $valueToCast);
     }
 }
